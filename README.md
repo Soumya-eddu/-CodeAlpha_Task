@@ -1,4 +1,4 @@
-# -CodeAlpha_Task
+# CodeAlpha_Task
 # 🎮 Hangman Game - Python Project
 
 ## 📌 Overview
