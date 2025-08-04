@@ -1,1 +1,48 @@
+import random
+def hangman():
+    # List of predefined words
+    words = ['python', 'code', 'hangman', 'alpha', 'intern']
+    word = random.choice(words)
+    guessed_letters = set()
+    correct_letters = set(word)
+    attempts_left = 6
+
+    print("\n🎮 Welcome to the Hangman Game!")
+    print(f"🔤 The word has {len(word)} letters.")
+    print("📌 You have 6 tries to guess the correct word.\n")
+
+    # Game loop
+    while attempts_left > 0:
+        # Display current word state
+        display = [letter if letter in guessed_letters else '_' for letter in word]
+        print("📝 Word:", ' '.join(display))
+
+        # Get user input
+        guess = input("👉 Enter a letter: ").lower()
+
+        # Validate input
+        if not guess.isalpha() or len(guess) != 1:
+            print("⚠️ Invalid input! Please enter a single alphabetical character.\n")
+            continue
+        if guess in guessed_letters:
+            print("🔁 You've already guessed that letter. Try a different one.\n")
+            continue
+
+        # Check guess
+        guessed_letters.add(guess)
+        if guess in correct_letters:
+            print(f"✅ Good job! '{guess}' is in the word.\n")
+            if correct_letters.issubset(guessed_letters):
+                print("🎉 Congratulations! You've guessed the word correctly:", word)
+                break
+        else:
+            attempts_left -= 1
+            print(f"❌ Oops! '{guess}' is not in the word. Tries left: {attempts_left}\n")
+
+    else:
+        print(f"💀 Game Over! The correct word was: '{word}'")
+
+# Run the game
+if __name__ == "__main__":
+    hangman()
 
